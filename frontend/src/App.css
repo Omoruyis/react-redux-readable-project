@@ -1,0 +1,120 @@
+* {
+  box-sizing: border-box
+}
+
+.nav {
+  background-color: gray;
+  height: 150px;
+  padding: 30px
+}
+
+.navColor {
+  color: white
+}
+
+.content {
+  background-color: aquamarine;
+  height: 2000px
+}
+
+.categories {
+  padding: 20px 40px 10px 40px;
+  text-align: center
+}
+
+.category {
+  padding: 20px 20px 30px 20px;
+  background-color: grey;
+  color: rgb(20, 18, 18);
+  width: 80px;
+  height: 30px;
+  margin: 20px;
+  cursor: pointer;
+  text-align: center
+}
+
+.all {
+  text-align: center;
+}
+
+.showAll {
+  border: none;
+  background-color: none
+}
+
+.select {
+  text-align: center;
+  margin: 30px
+}
+
+.select-item {
+  width: 200px
+}
+
+.comment-section {
+  align-content: center;
+  padding-left: 70px;
+  padding-right: 70px;
+}
+
+.comment {
+  background-color: white;
+  padding: 20px;
+  width: 40%;
+  margin: 20px 20px 30px 40px;
+  display: inline-block;
+  margin: 60px
+}
+
+.ed {
+  float: right;
+}
+
+.no {
+  float: right;
+}
+
+.create-post {
+  text-align: center
+}
+
+.input {
+  display: block;
+  margin-left: 35%;
+  width: 500px;
+  margin-bottom: 5px;
+  padding: 4px
+}
+
+.submit {
+  display: block;
+  margin-left: 35%;
+  width: 500px;
+  padding: 4px;
+}
+
+.overlay {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  background-color: rgba(255, 255, 255, 0.75);
+}
+
+.modal {
+  position: absolute;
+  top: 40px;
+  left: 200px;
+  right: 200px;
+  bottom: 40px;
+  border: 1px solid rgb(204, 204, 204);
+  background: rgb(255, 255, 255);
+  overflow: auto;
+  border-radius: 4px;
+  outline: none;
+  padding: 20px;
+  border-radius: 3px;
+  box-shadow: 0 3px 8px 0 rgba(0,0,0,.24), 0 3px 12px 0 rgba(0,0,0,.12);
+  min-width: 500px;
+}
