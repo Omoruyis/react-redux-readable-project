@@ -25,7 +25,6 @@ function postList (state = {}, action) {
         case REMOVE_POST : 
             
             delete state[id]
-            console.log(id)
             postsAPI.removePost(id)
             
             return {

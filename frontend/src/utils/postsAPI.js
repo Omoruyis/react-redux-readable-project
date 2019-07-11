@@ -8,7 +8,7 @@ if (!token)
 const headers = {
     'Accept': 'application/json',
     'Authorization': token
-  }
+}
   
   export const getAllCategories = () =>
     fetch(`${api}/categories`, { headers })

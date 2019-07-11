@@ -3,11 +3,26 @@ import '../App.css';
 import { connect } from 'react-redux'
 import { removePost, updatePost, addPost, fetchPost, incrementPost, decreasePost } from '../actions/posts'
 import Modal from 'react-modal'
+import Post from './post'
+import Nav from './nav'
+import { Link } from 'react-router-dom'
+
 
 class Posts extends Component {
     state= {
       openModal: false,
-      currentPost: {}
+      currentPost: {}, 
+      showCommentModal: false,
+      currentCategory: '', 
+      sortMethod: '',
+    }
+
+    changeCategory = (data) => {
+      this.setState(() => ({currentCategory: data}))
+    }
+
+    changeSort = (data) => {
+      this.setState(() => ({sortMethod: data}))
     }
 
     update = (type, query) => {
@@ -38,20 +53,161 @@ class Posts extends Component {
     closePostModal = () => this.setState(() => ({ openModal: false }))
 
     render() {
-      const { openModal, currentPost } = this.state
-      const { posts, addPost, fetchPost, removePost, updatePost, incrementPost, decreasePost } = this.props
+      const { openModal, currentPost, currentParent, showCommentModal, currentCategory, sortMethod, } = this.state
+      const { posts, removePost, incrementPost, decreasePost,  originalPosts, displayComment } = this.props
       const yes = posts.length > 0
+      console.log(this.props)
         return (
-          <div className="comment-section">
-              {yes ? posts.map(post => (
+          <div>
+            <Nav />
+            <div className="content">
+              <div className="categories">
+                <button className="category" onClick={() => this.changeCategory('react')}>React</button>
+                <button className="category" onClick={() => this.changeCategory('redux')}>Redux</button>
+                <button className="category" onClick={() => this.changeCategory('react-redux')}>React-Redux</button>
+              </div>
+              <div className="all">
+                <button className="showAll" onClick={() => this.changeCategory('')}>Show all</button>
+              </div>
+              <div className="select">
+                <select className="select-item" onChange={(e) => this.changeSort(e.target.value)}>
+                  <option value="">Default</option>
+                  <option value="shtl">Highest to lowest voteScore</option>
+                  <option value="slth">Lowest to highest voteScore</option>
+                  <option value="tlth">Lowest time to highest time</option>
+                  <option value="thtl">Highest time to lowest time</option>
+                </select>
+              </div>
+            <div className="comment-section">
+              {(yes && currentCategory && sortMethod) ? posts.filter(post => post.category===currentCategory).sort((a, b) => {
+                  if(sortMethod === 'shtl') {
+                    a = a.voteScore
+                    b = b.voteScore 
+                    if(a < b) {
+                      return 1
+                    } else {
+                      return -1
+                    }
+                  } else if(sortMethod === 'slth') {
+                    a = a.voteScore
+                    b = b.voteScore 
+                    if(a > b) {
+                      return 1
+                    } else {
+                      return -1
+                    }
+                  } else if(sortMethod === 'tlth') { 
+                    a = a.timestamp
+                    b = b.timestamp
+                    if(a > b) {
+                      return 1
+                    } else {
+                      return -1
+                    }
+                  } else if(sortMethod === 'thtl') {
+                    a = a.timestamp
+                    b = b.timestamp
+                    if(a < b) {
+                      return 1
+                    } else {
+                      return -1
+                    }
+                  } else if(sortMethod === 'normal') {
+                    return 0
+                  }
+                }).map(post => (
                 <div className="comment">
                   <h2>{post.title}</h2>  <button className="ed" onClick={() => this.editButton(post)}>ed</button> <button className="ed" onClick={() => removePost(post.id)}>del</button>
                   <p>{post.body}</p>
                   <p>{post.author}</p>
-                  <p><button onClick={() => incrementPost(post)}>up</button> <button onClick={() => decreasePost(post)}>do</button> <span>{post.voteScore}</span> <span className="no">2 comments</span></p>        
+                  <p><button onClick={() => incrementPost(post)}>up</button> <button onClick={() => decreasePost(post)}>do</button> <span>{post.voteScore}</span> <Link to='/comments'>
+                  <button onClick={() => displayComment(post)}><span className="no">{post.commentCount} comment</span></button>
+                  </Link></p>        
                 </div>
 
                 )) : <div></div>}
+
+               {(yes && !currentCategory && sortMethod) ? posts.sort((a, b) => {
+                  if(sortMethod === 'shtl') {
+                    a = a.voteScore
+                    b = b.voteScore 
+                    if(a < b) {
+                      return 1
+                    } else {
+                      return -1
+                    }
+                  } else if(sortMethod === 'slth') {
+                    a = a.voteScore
+                    b = b.voteScore 
+                    console.log('slth')
+                    if(a > b) {
+                      return 1
+                    } else {
+                      return -1
+                    }
+                  } else if(sortMethod === 'tlth') { 
+                    a = a.timestamp
+                    b = b.timestamp
+                    console.log('tlth')
+                    if(a > b) {
+                      return 1
+                    } else {
+                      return -1
+                    }
+                  } else if(sortMethod === 'thtl') {
+                    a = a.timestamp
+                    b = b.timestamp
+                    console.log('thtl')
+                    if(a < b) {
+                      return 1
+                    } else {
+                      return -1
+                    }
+                  } else if(sortMethod === 'normal'){
+                    return 0
+                  }
+                }).map(post => (
+                <div className="comment">
+                  <h2>{post.title}</h2>  <button className="ed" onClick={() => this.editButton(post)}>ed</button> <button className="ed" onClick={() => removePost(post.id)}>del</button>
+                  <p>{post.body}</p>
+                  <p>{post.author}</p>
+                  <p><button onClick={() => incrementPost(post)}>up</button> <button onClick={() => decreasePost(post)}>do</button> <span>{post.voteScore}</span> <Link to='/comments'>
+                  <button onClick={() => displayComment(post)}><span className="no">{post.commentCount} comment</span></button>  
+                  </Link></p>        
+                </div>
+
+                )) : <div></div>}
+
+
+
+
+              {(yes && currentCategory && !sortMethod) ? originalPosts.filter(post => post.category===currentCategory).map(post => (
+                <div className="comment">
+                  <h2>{post.title}</h2>  <button className="ed" onClick={() => this.editButton(post)}>ed</button> <button className="ed" onClick={() => removePost(post.id)}>del</button>
+                  <p>{post.body}</p>
+                  <p>{post.author}</p>
+                  <p><button onClick={() => incrementPost(post)}>up</button> <button onClick={() => decreasePost(post)}>do</button> <span>{post.voteScore}</span> <Link to='/comments'>
+                  <button onClick={() => displayComment(post)}><span className="no">{post.commentCount} comment</span></button>
+                  </Link></p>        
+                </div>
+
+                )) : <div></div>}    
+
+
+                {(yes && !currentCategory && !sortMethod) ? originalPosts.map(post => (
+                <div className="comment">
+                  <h2>{post.title}</h2>  <button className="ed" onClick={() => this.editButton(post)}>ed</button> <button className="ed" onClick={() => removePost(post.id)}>del</button>
+                  <p>{post.body}</p>
+                  <p>{post.author}</p>
+                  <p><button onClick={() => incrementPost(post)}>up</button> <button onClick={() => decreasePost(post)}>do</button> <span>{post.voteScore}</span> <Link to='/comments'>
+                  <button onClick={() => displayComment(post)}><span className="no">{post.commentCount} comment</span></button>
+                  </Link></p>        
+                </div>
+
+                )) : <div></div>}   
+              </div> 
+
+                <Post />
 
               <Modal
                   className='modal'
@@ -74,6 +230,7 @@ class Posts extends Component {
                 </Modal>
 
           </div>
+        </div>
         )
     }
 }
@@ -81,14 +238,17 @@ class Posts extends Component {
 function mapStateToProps({postList}) {
     const obj = Object.keys(postList)
     let arr
+    let newarr
     if (obj.length > 0) {
       arr = obj.map(key => postList[key])
+      newarr = obj.map(key => postList[key])
       return {
-        posts: arr
+        posts: arr,
+        originalPosts: newarr
       }
     } else {
       return {
-        posts: []
+        posts: [],
       }
     }
   }

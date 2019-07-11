@@ -69,7 +69,7 @@ export const decreasePost = ({ id, title, body, author, category, voteScore, del
     }
 }
 
-export const updatePost = ({ id, title, body, author, category }) => {
+export const updatePost = ({ id, title, body, author, category, voteScore }) => {
     return {
         type: UPDATE_POST,
         post: {
@@ -79,7 +79,7 @@ export const updatePost = ({ id, title, body, author, category }) => {
             body,
             author,
             category,
-            voteScore: 1,
+            voteScore,
             deleted: false,
             commentCount: 0
         }
