@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import '../App.css';
-import * as api from '../utils/postsAPI'
-
 import Posts from './posts'
 import Comments from './comments'
 import { Route } from 'react-router-dom'

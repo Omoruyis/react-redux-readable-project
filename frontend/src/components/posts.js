@@ -12,7 +12,6 @@ class Posts extends Component {
     state= {
       openModal: false,
       currentPost: {}, 
-      showCommentModal: false,
       currentCategory: '', 
       sortMethod: '',
     }
@@ -53,7 +52,7 @@ class Posts extends Component {
     closePostModal = () => this.setState(() => ({ openModal: false }))
 
     render() {
-      const { openModal, currentPost, currentParent, showCommentModal, currentCategory, sortMethod, } = this.state
+      const { openModal, currentPost, currentCategory, sortMethod, } = this.state
       const { posts, removePost, incrementPost, decreasePost,  originalPosts, displayComment } = this.props
       const yes = posts.length > 0
       console.log(this.props)

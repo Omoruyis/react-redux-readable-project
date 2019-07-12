@@ -255,7 +255,7 @@ app.get('/comments/:id', (req, res) => {
           (error) => {
               console.error(error)
               res.status(500).send({
-                  error: 'There was an error.'
+                  error: 'Theres will was an error.'
               })
           }
       )

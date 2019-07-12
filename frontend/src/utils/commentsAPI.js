@@ -10,8 +10,8 @@ const headers = {
     'Authorization': token
 }
 
-export const getAllComments = (parentid) =>
-fetch(`${api}/posts/:${parentid}/comments`, { headers })
+export const getAllComments = (id) =>
+fetch(`${api}/posts/${id}/comments`, { headers })
   .then(res => res.json())
   .then(data => data)
 
@@ -26,13 +26,13 @@ fetch(`${api}/comments`, {
 }).then(res => res.json())
 
 export const removeComment = (id) =>
-fetch(`${api}/comments/:${id}`, { method: 'DELETE', headers })
+fetch(`${api}/comments/${id}`, { method: 'DELETE', headers })
   .then(res => res.json())
   .then(data => data.contact)
 
   
 export const counter = (body) =>
-fetch(`${api}/comments/:${body.id}`, {
+fetch(`${api}/comments/${body.id}`, {
   method: 'POST',
   headers: {
     ...headers,
@@ -42,7 +42,7 @@ fetch(`${api}/comments/:${body.id}`, {
 }).then(res => res.json())
 
 export const editComment = (body) =>
-fetch(`${api}/comments/:${body.id}`, {
+fetch(`${api}/comments/${body.id}`, {
   method: 'PUT',
   headers: {
     ...headers,

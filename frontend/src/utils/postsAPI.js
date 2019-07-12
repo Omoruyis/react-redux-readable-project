@@ -40,11 +40,15 @@ const headers = {
       .then(res => res.json())
       .then(data => data)
   
-  export const removePost = (id) =>
-    fetch(`${api}/posts/${id}`, { method: 'DELETE', headers })
-      .then(res => res.json())
-      .then(data => data.contact)
+  // export const removePost = (id) =>
+  //   fetch(`${api}/posts/${id}`, { method: 'DELETE', headers })
+  //     .then(res => res.json())
+  //     .then(data => data.contact)
 
+  export const removePost = (id) =>
+  fetch(`${api}/posts/${id}`, { method: 'DELETE', headers })
+    .then(res => res.json())
+    .then(data => data)
       
   export const counter = (body) =>
     fetch(`${api}/posts/${body.id}`, {
