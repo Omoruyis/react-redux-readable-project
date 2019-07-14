@@ -14,32 +14,34 @@
 
 .content {
   background-color: aquamarine;
-  height: 2000px
+  padding: 20px;
 }
 
 .categories {
   padding: 20px 40px 10px 40px;
-  text-align: center
+  text-align: center;
 }
 
 .category {
-  padding: 20px 20px 30px 20px;
+  padding: 20px;
   background-color: grey;
   color: rgb(20, 18, 18);
   width: 80px;
   height: 30px;
-  margin: 20px;
+  margin: 40px;
   cursor: pointer;
   text-align: center
 }
 
 .all {
   text-align: center;
+  margin: 20px
 }
 
 .showAll {
   border: none;
-  background-color: none
+  background-color: none;
+  cursor: pointer
 }
 
 .select {
@@ -64,6 +66,10 @@
   margin: 20px 20px 30px 40px;
   display: inline-block;
   margin: 60px
+}
+
+.commentsHead {
+  margin: 60px 60px 0px 60px
 }
 
 .ed {
@@ -121,9 +127,8 @@
 
 .backHome {
   color: blue;
-  background-color: bisque;
   display: block;
-  padding: 20px;
-  margin: 20px;
-  font-size: 15px
+  margin: 60px;
+  font-size: 30px;
+  text-decoration: none
 }

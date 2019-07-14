@@ -61,12 +61,12 @@ class Posts extends Component {
             <Nav />
             <div className="content">
               <div className="categories">
-                <button className="category" onClick={() => this.changeCategory('react')}>React</button>
-                <button className="category" onClick={() => this.changeCategory('redux')}>Redux</button>
-                <button className="category" onClick={() => this.changeCategory('react-redux')}>React-Redux</button>
+                <a className="category" onClick={() => this.changeCategory('react')}>React</a>
+                <a className="category" onClick={() => this.changeCategory('redux')}>Redux</a>
+                <a className="category" onClick={() => this.changeCategory('react-redux')}>React-Redux</a>
               </div>
               <div className="all">
-                <button className="showAll" onClick={() => this.changeCategory('')}>Show all</button>
+                <a className="showAll" onClick={() => this.changeCategory('')}>Show all</a>
               </div>
               <div className="select">
                 <select className="select-item" onChange={(e) => this.changeSort(e.target.value)}>
@@ -120,7 +120,7 @@ class Posts extends Component {
                   <p>{post.body}</p>
                   <p>{post.author}</p>
                   <p><button onClick={() => incrementPost(post)}>up</button> <button onClick={() => decreasePost(post)}>do</button> <span>{post.voteScore}</span> <Link to='/comments'>
-                  <button onClick={() => displayComment(post)}><span className="no">{post.commentCount} comment</span></button>
+                  <a onClick={() => displayComment(post)}><span className="no">{post.commentCount} {post.commentCount === 1 ? 'comment' : 'comments'}</span></a>
                   </Link></p>        
                 </div>
 
@@ -171,7 +171,7 @@ class Posts extends Component {
                   <p>{post.body}</p>
                   <p>{post.author}</p>
                   <p><button onClick={() => incrementPost(post)}>up</button> <button onClick={() => decreasePost(post)}>do</button> <span>{post.voteScore}</span> <Link to='/comments'>
-                  <button onClick={() => displayComment(post)}><span className="no">{post.commentCount} comment</span></button>  
+                  <a onClick={() => displayComment(post)}><span className="no">{post.commentCount} {post.commentCount === 1 ? 'comment' : 'comments'}</span></a>  
                   </Link></p>        
                 </div>
 
@@ -186,7 +186,7 @@ class Posts extends Component {
                   <p>{post.body}</p>
                   <p>{post.author}</p>
                   <p><button onClick={() => incrementPost(post)}>up</button> <button onClick={() => decreasePost(post)}>do</button> <span>{post.voteScore}</span> <Link to='/comments'>
-                  <button onClick={() => displayComment(post)}><span className="no">{post.commentCount} comment</span></button>
+                  <a onClick={() => displayComment(post)}><span className="no">{post.commentCount} {post.commentCount === 1 ? 'comment' : 'comments'}</span></a>
                   </Link></p>        
                 </div>
 
@@ -199,7 +199,7 @@ class Posts extends Component {
                   <p>{post.body}</p>
                   <p>{post.author}</p>
                   <p><button onClick={() => incrementPost(post)}>up</button> <button onClick={() => decreasePost(post)}>do</button> <span>{post.voteScore}</span> <Link to='/comments'>
-                  <button onClick={() => displayComment(post)}><span className="no">{post.commentCount} comment</span></button>
+                  <a onClick={() => displayComment(post)}><span className="no">{post.commentCount} {post.commentCount === 1 ? 'comment' : 'comments'}</span></a>
                   </Link></p>        
                 </div>
 

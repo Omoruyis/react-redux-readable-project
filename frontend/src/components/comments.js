@@ -48,13 +48,13 @@ class Comments extends Component {
         const month = d.getMonth()
         const { openModal, currentComment } = this.state
         const { currentParent, comments, removeComment, incrementComment, decreaseComment } = this.props
-        console.log(this.props.comments)
         return (
             <div className="content">
                 {!currentParent ? <div></div> : <div>
-                    <Link to='/'>
-                <button className="backHome">Home</button>
+                <Link to='/'>
+                  <a><p className="backHome">Home</p></a>
                </Link>
+               <h1 className="commentsHead">Post</h1>
                <div className="comment">
                 <h2>{currentParent.title}</h2> 
                   <p>{currentParent.body}</p>
@@ -62,6 +62,8 @@ class Comments extends Component {
                   <p>{`${d.getDate()} ${months[month]} ${d.getFullYear()}`}</p>
                </div>
                 </div>}
+
+                {!comments ? <div></div> : <h1 className="commentsHead">Comments</h1>}
                 {!comments ? <div></div> : comments.filter(comment => comment.parentId === currentParent.id).map(comment => (
                 <div className="comment">
                   <h2>{comment.body}</h2>  <button className="ed" onClick={() => this.editButton(comment)}>ed</button> <button className="ed" onClick={() => removeComment(comment.id)}>del</button>
