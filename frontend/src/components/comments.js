@@ -6,6 +6,10 @@ import Modal from 'react-modal'
 import { Link } from 'react-router-dom'
 import Comment from './comment'
 import * as api from '../utils/commentsAPI'
+import { FaTrash } from 'react-icons/fa'
+import { FaEdit } from 'react-icons/fa'
+import { FaThumbsUp } from 'react-icons/fa'
+import { FaThumbsDown } from 'react-icons/fa'
 
 
 class Comments extends Component {
@@ -66,17 +70,20 @@ class Comments extends Component {
                 {!comments ? <div></div> : <h1 className="commentsHead">Comments</h1>}
                 {!comments ? <div></div> : comments.filter(comment => comment.parentId === currentParent.id).map(comment => (
                 <div className="comment">
-                  <h2>{comment.body}</h2>  <button className="ed" onClick={() => this.editButton(comment)}>ed</button> <button className="ed" onClick={() => removeComment(comment.id)}>del</button>
+                  <h2>{comment.body}</h2>  <button className="ed" onClick={() => this.editButton(comment)}><FaEdit /></button> <button className="ed" onClick={() => removeComment(comment.id)}><FaTrash /></button>
                   <p>{comment.author}</p>
-                  <p><button onClick={() => incrementComment(comment)}>up</button> <button onClick={() => decreaseComment(comment)}>do</button> <span>{comment.voteScore}</span></p>        
+                  <p><button onClick={() => incrementComment(comment)} className="thumbs"><FaThumbsUp /></button> <button onClick={() => decreaseComment(comment)} className="thumbs"><FaThumbsDown /></button> <span>{comment.voteScore}</span></p>        
                 </div>
 
                 ))}
 
                 {!currentParent ? <div></div> : 
+                <div>
+                <h1 className="commentsHead newPost">Create New Comment</h1>
                 <Comment 
                 parentId={currentParent.id}
                 />
+                </div>
                 }
 
                 <Modal

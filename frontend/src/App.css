@@ -74,6 +74,13 @@
 
 .ed {
   float: right;
+  background-color: white;
+  border: 0
+}
+
+.thumbs {
+  background-color: white;
+  border: 0
 }
 
 .no {
@@ -131,4 +138,9 @@
   margin: 60px;
   font-size: 30px;
   text-decoration: none
+}
+
+.newPost {
+  text-align: center;
+  margin-bottom: 30px
 }

@@ -1,4 +1,6 @@
-const api = process.env.REACT_APP_CONTACTS_API_URL || 'http://localhost:3001'
+//const api = process.env.REACT_APP_CONTACTS_API_URL || 'http://localhost:3001' 
+
+const api = 'https://aqueous-fortress-53155.herokuapp.com'
 
 let token = localStorage.token
 

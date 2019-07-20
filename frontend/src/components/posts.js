@@ -6,6 +6,10 @@ import Modal from 'react-modal'
 import Post from './post'
 import Nav from './nav'
 import { Link } from 'react-router-dom'
+import { FaTrash } from 'react-icons/fa'
+import { FaEdit } from 'react-icons/fa'
+import { FaThumbsUp } from 'react-icons/fa'
+import { FaThumbsDown } from 'react-icons/fa'
 
 
 class Posts extends Component {
@@ -113,13 +117,13 @@ class Posts extends Component {
                     }
                   } else if(sortMethod === 'normal') {
                     return 0
-                  }
+                  } 
                 }).map(post => (
                 <div className="comment">
-                  <h2>{post.title}</h2>  <button className="ed" onClick={() => this.editButton(post)}>ed</button> <button className="ed" onClick={() => removePost(post.id)}>del</button>
+                  <h2>{post.title}</h2>  <button className="ed" onClick={() => this.editButton(post)}><FaEdit /></button> <button className="ed" onClick={() => removePost(post.id)}><FaTrash /></button>
                   <p>{post.body}</p>
                   <p>{post.author}</p>
-                  <p><button onClick={() => incrementPost(post)}>up</button> <button onClick={() => decreasePost(post)}>do</button> <span>{post.voteScore}</span> <Link to='/comments'>
+                  <p><button onClick={() => incrementPost(post)} className="thumbs"><FaThumbsUp /></button> <button onClick={() => decreasePost(post)} className="thumbs"><FaThumbsDown /></button> <span>{post.voteScore}</span> <Link to='/comments'>
                   <a onClick={() => displayComment(post)}><span className="no">{post.commentCount} {post.commentCount === 1 ? 'comment' : 'comments'}</span></a>
                   </Link></p>        
                 </div>
@@ -167,10 +171,10 @@ class Posts extends Component {
                   }
                 }).map(post => (
                 <div className="comment">
-                  <h2>{post.title}</h2>  <button className="ed" onClick={() => this.editButton(post)}>ed</button> <button className="ed" onClick={() => removePost(post.id)}>del</button>
+                  <h2>{post.title}</h2>  <button className="ed" onClick={() => this.editButton(post)}><FaEdit /></button> <button className="ed" onClick={() => removePost(post.id)}><FaTrash /></button>
                   <p>{post.body}</p>
                   <p>{post.author}</p>
-                  <p><button onClick={() => incrementPost(post)}>up</button> <button onClick={() => decreasePost(post)}>do</button> <span>{post.voteScore}</span> <Link to='/comments'>
+                  <p><button onClick={() => incrementPost(post)} className="thumbs"><FaThumbsUp /></button> <button onClick={() => decreasePost(post)} className="thumbs"><FaThumbsDown /></button> <span>{post.voteScore}</span> <Link to='/comments'>
                   <a onClick={() => displayComment(post)}><span className="no">{post.commentCount} {post.commentCount === 1 ? 'comment' : 'comments'}</span></a>  
                   </Link></p>        
                 </div>
@@ -182,10 +186,10 @@ class Posts extends Component {
 
               {(yes && currentCategory && !sortMethod) ? originalPosts.filter(post => post.category===currentCategory).map(post => (
                 <div className="comment">
-                  <h2>{post.title}</h2>  <button className="ed" onClick={() => this.editButton(post)}>ed</button> <button className="ed" onClick={() => removePost(post.id)}>del</button>
+                  <h2>{post.title}</h2>  <button className="ed" onClick={() => this.editButton(post)}><FaEdit /></button> <button className="ed" onClick={() => removePost(post.id)}><FaTrash /></button>
                   <p>{post.body}</p>
                   <p>{post.author}</p>
-                  <p><button onClick={() => incrementPost(post)}>up</button> <button onClick={() => decreasePost(post)}>do</button> <span>{post.voteScore}</span> <Link to='/comments'>
+                  <p><button onClick={() => incrementPost(post)} className="thumbs"><FaThumbsUp /></button> <button onClick={() => decreasePost(post)} className="thumbs"><FaThumbsDown /></button> <span>{post.voteScore}</span> <Link to='/comments'>
                   <a onClick={() => displayComment(post)}><span className="no">{post.commentCount} {post.commentCount === 1 ? 'comment' : 'comments'}</span></a>
                   </Link></p>        
                 </div>
@@ -195,17 +199,17 @@ class Posts extends Component {
 
                 {(yes && !currentCategory && !sortMethod) ? originalPosts.map(post => (
                 <div className="comment">
-                  <h2>{post.title}</h2>  <button className="ed" onClick={() => this.editButton(post)}>ed</button> <button className="ed" onClick={() => removePost(post.id)}>del</button>
+                  <h2>{post.title}</h2>  <button className="ed" onClick={() => this.editButton(post)}><FaEdit /></button> <button className="ed" onClick={() => removePost(post.id)}><FaTrash /></button>
                   <p>{post.body}</p>
                   <p>{post.author}</p>
-                  <p><button onClick={() => incrementPost(post)}>up</button> <button onClick={() => decreasePost(post)}>do</button> <span>{post.voteScore}</span> <Link to='/comments'>
+                  <p><button onClick={() => incrementPost(post)} className="thumbs"><FaThumbsUp /></button> <button onClick={() => decreasePost(post)} className="thumbs"><FaThumbsDown /></button> <span>{post.voteScore}</span> <Link to='/comments'>
                   <a onClick={() => displayComment(post)}><span className="no">{post.commentCount} {post.commentCount === 1 ? 'comment' : 'comments'}</span></a>
                   </Link></p>        
                 </div>
 
                 )) : <div></div>}   
               </div> 
-
+                <h1 className="commentsHead newPost">Create New Post</h1>
                 <Post />
 
               <Modal
