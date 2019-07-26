@@ -53,13 +53,52 @@ class Posts extends Component {
       this.props.updatePost(data)
     }
 
+    sortDisplay = (a, b) => {
+      if(this.state.sortMethod === 'shtl') {
+        a = a.voteScore
+        b = b.voteScore 
+        if(a < b) {
+          console.log('yeah')
+          return 1
+        } else {
+          console.log('nah')
+          return -1
+        }
+      } else if(this.state.sortMethod === 'slth') {
+        a = a.voteScore
+        b = b.voteScore 
+        if(a > b) {
+          return 1
+        } else {
+          return -1
+        }
+      } else if(this.state.sortMethod === 'tlth') { 
+        a = a.timestamp
+        b = b.timestamp
+        if(a > b) {
+          return 1
+        } else {
+          return -1
+        }
+      } else if(this.state.sortMethod === 'thtl') {
+        a = a.timestamp
+        b = b.timestamp
+        if(a < b) {
+          return 1
+        } else {
+          return -1
+        }
+      } else if(this.state.sortMethod === 'normal') {
+        return 0
+      }
+    }
+
     closePostModal = () => this.setState(() => ({ openModal: false }))
 
     render() {
       const { openModal, currentPost, currentCategory, sortMethod, } = this.state
       const { posts, removePost, incrementPost, decreasePost,  originalPosts, displayComment } = this.props
       const yes = posts.length > 0
-      console.log(this.props)
         return (
           <div>
             <Nav />
@@ -82,44 +121,10 @@ class Posts extends Component {
                 </select>
               </div>
             <div className="comment-section">
-              {(yes && currentCategory && sortMethod) ? posts.filter(post => post.category===currentCategory).sort((a, b) => {
-                  if(sortMethod === 'shtl') {
-                    a = a.voteScore
-                    b = b.voteScore 
-                    if(a < b) {
-                      return 1
-                    } else {
-                      return -1
-                    }
-                  } else if(sortMethod === 'slth') {
-                    a = a.voteScore
-                    b = b.voteScore 
-                    if(a > b) {
-                      return 1
-                    } else {
-                      return -1
-                    }
-                  } else if(sortMethod === 'tlth') { 
-                    a = a.timestamp
-                    b = b.timestamp
-                    if(a > b) {
-                      return 1
-                    } else {
-                      return -1
-                    }
-                  } else if(sortMethod === 'thtl') {
-                    a = a.timestamp
-                    b = b.timestamp
-                    if(a < b) {
-                      return 1
-                    } else {
-                      return -1
-                    }
-                  } else if(sortMethod === 'normal') {
-                    return 0
-                  } 
-                }).map(post => (
+              {(yes && currentCategory && sortMethod) ? posts.filter(post => post.category===currentCategory).sort((a, b) => this.sortDisplay(a, b)
+                ).map(post => (
                 <div className="comment">
+                  {console.log(post.timestamp)}
                   <h2>{post.title}</h2>  <button className="ed" onClick={() => this.editButton(post)}><FaEdit /></button> <button className="ed" onClick={() => removePost(post.id)}><FaTrash /></button>
                   <p>{post.body}</p>
                   <p>{post.author}</p>
@@ -130,46 +135,7 @@ class Posts extends Component {
 
                 )) : <div></div>}
 
-               {(yes && !currentCategory && sortMethod) ? posts.sort((a, b) => {
-                  if(sortMethod === 'shtl') {
-                    a = a.voteScore
-                    b = b.voteScore 
-                    if(a < b) {
-                      return 1
-                    } else {
-                      return -1
-                    }
-                  } else if(sortMethod === 'slth') {
-                    a = a.voteScore
-                    b = b.voteScore 
-                    console.log('slth')
-                    if(a > b) {
-                      return 1
-                    } else {
-                      return -1
-                    }
-                  } else if(sortMethod === 'tlth') { 
-                    a = a.timestamp
-                    b = b.timestamp
-                    console.log('tlth')
-                    if(a > b) {
-                      return 1
-                    } else {
-                      return -1
-                    }
-                  } else if(sortMethod === 'thtl') {
-                    a = a.timestamp
-                    b = b.timestamp
-                    console.log('thtl')
-                    if(a < b) {
-                      return 1
-                    } else {
-                      return -1
-                    }
-                  } else if(sortMethod === 'normal'){
-                    return 0
-                  }
-                }).map(post => (
+               {(yes && !currentCategory && sortMethod) ? posts.sort((a, b) => this.sortDisplay(a, b)).map(post => (
                 <div className="comment">
                   <h2>{post.title}</h2>  <button className="ed" onClick={() => this.editButton(post)}><FaEdit /></button> <button className="ed" onClick={() => removePost(post.id)}><FaTrash /></button>
                   <p>{post.body}</p>
