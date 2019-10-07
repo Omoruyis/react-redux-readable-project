@@ -2,6 +2,7 @@
   box-sizing: border-box
 }
 
+
 .nav {
   background-color: gray;
   height: 150px;
@@ -57,6 +58,9 @@
   align-content: center;
   padding-left: 70px;
   padding-right: 70px;
+  display: flex;
+  flex-wrap: wrap;
+  
 }
 
 .comment {
@@ -64,13 +68,10 @@
   padding: 20px;
   width: 40%;
   margin: 20px 20px 30px 40px;
-  display: inline-block;
-  margin: 60px
+  margin: 60px;
+  height: auto;
 }
 
-.commentsHead {
-  margin: 60px 60px 0px 60px
-}
 
 .ed {
   float: right;
@@ -87,13 +88,16 @@
   float: right;
 }
 
-.create-post {
-  text-align: center
+
+.holder {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center
 }
 
 .input {
   display: block;
-  margin-left: 35%;
   width: 500px;
   margin-bottom: 5px;
   padding: 4px
@@ -101,7 +105,6 @@
 
 .submit {
   display: block;
-  margin-left: 35%;
   width: 500px;
   padding: 4px;
 }
@@ -141,6 +144,100 @@
 }
 
 .newPost {
-  text-align: center;
   margin-bottom: 30px
+}
+
+.comment-head {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+  
+}
+
+.comment-sect {
+  margin-bottom: -30px;
+}
+
+.lead-post {
+  background-color: white;
+  padding: 20px;
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  height: auto;
+}
+
+@media screen and (max-width: 1400px) {
+  
+
+  .comment-section {
+    align-content: center;
+    padding-left: 5px;
+    padding-right: 5px;
+    display: flex;
+    flex-wrap: wrap;  
+    justify-content: center;
+  }
+  
+
+  .comment-sect {
+    margin-bottom: 0px;
+  }
+  .comment {
+    background-color: white;
+    width: 40%;
+    margin: 30px;
+    height: auto;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  
+  .comment {
+    width: 80%;
+  }
+
+  .comment-sect {
+    margin-bottom: 0px;
+  }
+
+  .comment-head {
+    margin-left: 30px;
+  }
+
+  .lead-post {
+    width: 70%
+  }
+
+  .input {
+    width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 5px;
+    padding: 4px
+  }
+  
+  .submit {
+    width: 400px;
+    padding: 4px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+}
+
+@media screen and (max-width: 680px) {
+
+  .category {
+    margin: 20px
+  }
+
+  .comment-sect {
+    margin-bottom: 0px;
+  }
+
+  .categories {
+    padding: 20px 20px 10px 20px;
+    text-align: center;
+  }
 }
