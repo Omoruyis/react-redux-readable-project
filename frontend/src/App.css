@@ -16,6 +16,7 @@
 .content {
   background-color: aquamarine;
   padding: 20px;
+  height: auto;
 }
 
 .categories {
@@ -26,7 +27,7 @@
 .category {
   padding: 20px;
   background-color: grey;
-  color: rgb(20, 18, 18);
+  color: white;
   width: 80px;
   height: 30px;
   margin: 40px;
@@ -70,6 +71,10 @@
   margin: 20px 20px 30px 40px;
   margin: 60px;
   height: auto;
+}
+
+.comment-link {
+  text-decoration: none;
 }
 
 
@@ -239,5 +244,43 @@
   .categories {
     padding: 20px 20px 10px 20px;
     text-align: center;
+  }
+}
+
+@media screen and (max-width: 520px) {
+    .categories {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .category {
+      width: 140px;
+      height: auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center
+    }
+}
+
+@media screen and (max-width: 490px) {
+  .input {
+    width: 350px;
+  }
+  
+  .submit {
+    width: 350px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .input {
+    width: 300px;
+  }
+  
+  .submit {
+    width: 300px;
   }
 }

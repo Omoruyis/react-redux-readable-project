@@ -55,7 +55,7 @@ class Comments extends Component {
     return (
       <div className="content">
         {!currentParent ? <div></div> : <div>
-          <Link to='/'>
+          <Link to='/' className="comment-link">
             <a><p className="backHome">Home</p></a>
           </Link>
           <h1 className="comment-head">Post</h1>
